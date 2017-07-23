@@ -14,11 +14,6 @@
 	```
 	npm install
 
-	```
-
-	and then run 
-
-	```
-	node server.js
+	npm start
 
 	```
