@@ -1,0 +1,32 @@
+{
+  "name": "fullstack-sample-app",
+  "version": "1.0.0",
+  "description": "This is sample app created for FullStack practice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhirjadhav18/FullStack-Sample.git"
+  },
+  "keywords": [
+    "fullstack",
+    "sample",
+    "nodejs",
+    "angular",
+    "mongodb"
+  ],
+  "author": "Sudhir Jadhav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudhirjadhav18/FullStack-Sample/issues"
+  },
+  "homepage": "https://github.com/sudhirjadhav18/FullStack-Sample#readme",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.3"
+  }
+}
