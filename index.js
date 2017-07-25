@@ -1,14 +1,15 @@
 
 var express = require('express');
 var app = express();
-var appPath = __dirname + '\\app\\';
 
-app.get("/", function(req, res) {
-	res.sendFile(appPath + "index.html");
+app.use(express.static(__dirname + '/app'));
+
+app.get("/*", function(req, res) {
+	res.sendFile(__dirname + "/app/index.html");
 });
 
 var port = 8080;
 app.listen(port, function() {
 	console.log("App live at port: " + port);
-	//console.log("App Path: " + appPath);
+	//console.log("dir Path: " + __dirname); 
 });
