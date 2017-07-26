@@ -25,10 +25,20 @@ fullStackApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
 		controller: "signUpController"
   	}
 
+  	var productState = {
+    	name: 'product',
+    	url: '/product',
+    	templateUrl: "templates/product.html",
+		controller: "productController"
+  	}
+
   	$urlMatcherFactoryProvider.caseInsensitive(true);
+  	
   	$stateProvider.state(loginState);
   	$stateProvider.state(homeState);
   	$stateProvider.state(signUpState);
+  	$stateProvider.state(productState);
+
 	$urlRouterProvider.otherwise('/');
 	$locationProvider.html5Mode(true);
 
