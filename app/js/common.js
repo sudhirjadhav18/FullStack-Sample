@@ -18,9 +18,17 @@ fullStackApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
 		controller: "homeController"
   	}
 
+  	var signUpState = {
+    	name: 'signup',
+    	url: '/signup',
+    	templateUrl: "templates/signup.html",
+		controller: "signUpController"
+  	}
+
   	$urlMatcherFactoryProvider.caseInsensitive(true);
   	$stateProvider.state(loginState);
   	$stateProvider.state(homeState);
+  	$stateProvider.state(signUpState);
 	$urlRouterProvider.otherwise('/');
 	$locationProvider.html5Mode(true);
 
