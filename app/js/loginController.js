@@ -1,5 +1,5 @@
 
-fullStackApp.controller("loginController", function($scope, $state) {	
+fullStackApp.controller("loginController", function($scope, $state, sharedProperties) {	
 
 	$scope.loginClick = function () {
 		$scope.emailClass = "";
@@ -21,6 +21,7 @@ fullStackApp.controller("loginController", function($scope, $state) {
 
 		if(isValid)
 		{
+			sharedProperties.setLoggedInUser(1);
 			$state.go('home');
 		}
 	}
