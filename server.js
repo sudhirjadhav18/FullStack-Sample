@@ -4,6 +4,11 @@ var app = express();
 
 app.use(express.static(__dirname + '/app'));
 
+app.post("/loginuser", function(req, res) {
+	console.log(req);
+	res.end("1");
+});
+
 app.get("/*", function(req, res) {
 	res.sendFile(__dirname + "/app/index.html");
 });

@@ -54,7 +54,7 @@ fullStackApp.run(['$rootScope', 'sharedProperties', '$state', function ($rootSco
         	}    		
     	}
     	else {
-    		if(toState.name != "login") {
+    		if(toState.name != "login" && toState.name != "signup") {
     			event.preventDefault();
             	$state.go('login');
         	} 

@@ -1,5 +1,5 @@
 
-fullStackApp.controller("loginController", function($scope, $state, sharedProperties) {	
+fullStackApp.controller("loginController", function($scope, $state, sharedProperties, $http) {	
 
 	$scope.loginClick = function () {
 		$scope.emailClass = "";
@@ -21,8 +21,31 @@ fullStackApp.controller("loginController", function($scope, $state, sharedProper
 
 		if(isValid)
 		{
-			sharedProperties.setLoggedInUser(1);
-			$state.go('home');
+			var loginJSON = {
+				"email": $scope.txtEmail,
+				"pass": $scope.txtPassword
+			};
+
+			$http({
+				method: "POST",
+				url: "/loginuser",
+				headers: { 'Content-Type': 'application/json; charset=utf-8' },
+				data: loginJSON				
+			}).then(function success(res) {
+
+				console.log("Login UserID: " + res.data);
+
+				if(res.data >= 1)
+				{
+					sharedProperties.setLoggedInUser(1);
+					$state.go('home');
+				}
+
+			}, function error(res) {
+				console.log(res.data);
+			});
+
+			
 		}
 	}
 
