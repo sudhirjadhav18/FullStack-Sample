@@ -1,10 +1,11 @@
 
-fullStackApp.controller("productController", function($scope, $state, sharedProperties) {
+fullStackApp.controller("productController", function($scope, $state, sharedProperties, $http) {
 	
 	$scope.saveClick = function () {
 		$scope.productClass = "";
 		$scope.brandClass = "";
 		$scope.priceClass = "";
+		$scope.productSaveFail = false;
 
 		var isValid = true;
 
@@ -27,8 +28,37 @@ fullStackApp.controller("productController", function($scope, $state, sharedProp
 		}
 
 		if(isValid)
-		{
-			$state.go('home');
+		{		
+
+			var productJSON = {
+				"name": $scope.txtProduct,
+				"brand": $scope.txtBrand,
+				"price": $scope.txtPrice
+			};
+
+			$http({
+				method: "POST",
+				url: "/saveproduct",
+				headers: { 'Content-Type': 'application/json; charset=utf-8' },
+				data: productJSON				
+			}).then(function success(res) {
+
+				if(res.data >= 1)
+				{
+					$state.go('home');
+				}
+				else
+				{
+					$scope.productError = "error";
+					$scope.productSaveFail = true;
+				}
+
+			}, function error(res) {
+				console.log(res.data);
+				$scope.productError = "Error while saving";
+				$scope.productSaveFail = true;
+			});
+
 		}
 	}
 

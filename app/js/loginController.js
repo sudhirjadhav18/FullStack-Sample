@@ -4,6 +4,7 @@ fullStackApp.controller("loginController", function($scope, $state, sharedProper
 	$scope.loginClick = function () {
 		$scope.emailClass = "";
 		$scope.passwordClass = "";
+		$scope.loginFail = false;
 
 		var isValid = true;
 
@@ -40,9 +41,17 @@ fullStackApp.controller("loginController", function($scope, $state, sharedProper
 					sharedProperties.setLoggedInUser(1);
 					$state.go('home');
 				}
+				else
+				{
+					$scope.loginError = "Incorrect email or password";
+					$scope.loginFail = true;
+					$scope.txtPassword = "";
+				}
 
 			}, function error(res) {
 				console.log(res.data);
+				$scope.loginError = "Error while login";
+				$scope.loginFail = true;
 			});
 
 			

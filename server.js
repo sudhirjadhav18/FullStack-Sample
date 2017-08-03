@@ -1,11 +1,29 @@
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.use(express.static(__dirname + '/app'));
+app.use(bodyParser.json());
 
 app.post("/loginuser", function(req, res) {
-	console.log(req);
+	console.log(req.body);
+
+	if(req.body.email == "sudhirjadhav@gmail.com" && req.body.pass == "password123")
+		res.end("1");
+	else
+		res.end("0");
+});
+
+app.post("/signupuser", function(req, res){
+	console.log(req.body);
+
+	res.end("1");
+});
+
+app.post("/saveproduct", function(req, res){
+	console.log(req.body);
+
 	res.end("1");
 });
 

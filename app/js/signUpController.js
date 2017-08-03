@@ -1,10 +1,11 @@
 
-fullStackApp.controller("signUpController", function($scope, $state) {
+fullStackApp.controller("signUpController", function($scope, $state, $http) {
 	
 	$scope.registerClick = function () {
 		$scope.emailClass = "";
 		$scope.passwordClass = "";
 		$scope.password2Class = "";
+		$scope.signUpFail = false;
 
 		var isValid = true;
 
@@ -34,8 +35,35 @@ fullStackApp.controller("signUpController", function($scope, $state) {
 		}
 
 		if(isValid)
-		{
-			$state.go('login');
+		{		
+
+			var signUpJSON = {
+				"email": $scope.txtEmail,
+				"pass": $scope.txtPassword
+			};
+
+			$http({
+				method: "POST",
+				url: "/signupuser",
+				headers: { 'Content-Type': 'application/json; charset=utf-8' },
+				data: signUpJSON				
+			}).then(function success(res) {
+
+				if(res.data >= 1)
+				{
+					$state.go('login');
+				}
+				else
+				{
+					$scope.signUpError = "Incorrect email or password";
+					$scope.signUpFail = true;
+				}
+
+			}, function error(res) {
+				console.log(res.data);
+				$scope.signUpError = "Error while sign up";
+				$scope.signUpFail = true;
+			});
 		}
 	}
 

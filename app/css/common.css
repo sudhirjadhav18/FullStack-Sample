@@ -1,5 +1,6 @@
 
 .custom-box { border: 1px solid #aaa; border-radius: 5px; margin: 10px 0 0; padding: 10px; background-color: #eee; }
+.bg-danger { padding: 15px; }
 
 .login-view .login-box { margin: 30px 0 0; padding: 30px; }
 

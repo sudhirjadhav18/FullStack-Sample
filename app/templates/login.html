@@ -22,6 +22,12 @@
 			      		<input type="password" class="form-control" ng-model="txtPassword" name="txtPassword" placeholder="Password" minlength="6">
 			    	</div>
 			  	</div>
+
+			  	<div class="form-group" ng-show="loginFail">
+			    	<div class="col-sm-offset-2 col-sm-10 ">
+			    		<p class="bg-danger">{{ loginError }}</p>			      		
+			    	</div>
+			  	</div>
 			  	
 			  	<div class="form-group">
 			    	<div class="col-sm-offset-2 col-sm-10">
