@@ -74,7 +74,7 @@ fullStackApp.service("sharedProperties", function() {
 			sessionStorage.setItem(STORAGE_LOGIN_ID, userId);
 		},
 		isLoggedIn: function() {
-			return sessionStorage.getItem(STORAGE_LOGIN_ID) && sessionStorage.getItem(STORAGE_LOGIN_ID) > 0;
+			return sessionStorage.getItem(STORAGE_LOGIN_ID) && sessionStorage.getItem(STORAGE_LOGIN_ID) != 0;
 		},
 		logoutUser: function() {
 			sessionStorage.setItem(STORAGE_LOGIN_ID, 0);

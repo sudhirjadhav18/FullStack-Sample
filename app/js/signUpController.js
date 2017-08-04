@@ -49,13 +49,19 @@ fullStackApp.controller("signUpController", function($scope, $state, $http) {
 				data: signUpJSON				
 			}).then(function success(res) {
 
-				if(res.data >= 1)
+				if(res.data == "1")
 				{
 					$state.go('login');
 				}
 				else
 				{
-					$scope.signUpError = "Incorrect email or password";
+					if(res.data == "-1")
+						$scope.signUpError = "Error while sign up";
+					if(res.data == "-2")
+						$scope.signUpError = "Email already present";
+					else
+						$scope.signUpError = "Incorrect email or password";
+
 					$scope.signUpFail = true;
 				}
 

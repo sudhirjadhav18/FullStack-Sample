@@ -26,6 +26,7 @@
   "homepage": "https://github.com/sudhirjadhav18/FullStack-Sample#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30"
   }
 }

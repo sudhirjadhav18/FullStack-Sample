@@ -7,6 +7,7 @@
    - Node.js has to be installed on the system, if not that should be done before running program.
    - Install the node modules - Should be performed inside the root folder
      npm install
+   - MongoDB has to be installed and running on the system with default port: 27017
    - To run the program, run following command
      node index.js
    - Open url in the browser http://localhost:8080/

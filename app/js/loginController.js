@@ -35,15 +35,25 @@ fullStackApp.controller("loginController", function($scope, $state, sharedProper
 			}).then(function success(res) {
 
 				console.log("Login UserID: " + res.data);
-
-				if(res.data >= 1)
+				var isError = false;
+				
+				if(res.data == "0")
 				{
-					sharedProperties.setLoggedInUser(1);
-					$state.go('home');
+					isError = true;
+					$scope.loginError = "Incorrect email or password";					
+				}
+				else if(res.data == "-1")
+				{
+					isError = true;
+					$scope.loginError = "Error while login";					
 				}
 				else
 				{
-					$scope.loginError = "Incorrect email or password";
+					sharedProperties.setLoggedInUser(res.data);
+					$state.go('home');
+				}
+
+				if(isError) {
 					$scope.loginFail = true;
 					$scope.txtPassword = "";
 				}
