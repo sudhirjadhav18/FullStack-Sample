@@ -9,7 +9,7 @@
      npm install
    - MongoDB has to be installed and running on the system with default port: 27017
    - To run the program, run following command
-     node index.js
+     node server.js
    - Open url in the browser http://localhost:8080/
 
 	```
