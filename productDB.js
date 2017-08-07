@@ -2,10 +2,12 @@
 exports.checkLogin = checkLogin;
 exports.registerUser = registerUser;
 exports.saveProduct = saveProduct;
-exports.getProducts = getProducts;
+exports.getProduct = getProduct;
 
 var COLLECTION_PRODUCT = "Product";
 var COLLECTION_USER = "User";
+
+var ObjectId = require('mongodb').ObjectID;
 
 function checkLogin(email, pass, callback) {
 	
@@ -135,10 +137,16 @@ function saveProduct(productData, callback) {
 	});
 }
 
-function getProducts(callback) {
+function getProduct(productId, callback) {
 	connectDB(function(db) {
 		if(db) {
-			db.collection(COLLECTION_PRODUCT).find({}).toArray(function(err, result) {
+
+			var query = {};
+			if(productId) {
+				query = { _id: ObjectId(productId) }
+			}
+
+			db.collection(COLLECTION_PRODUCT).find(query).toArray(function(err, result) {
 				if(err) {
 					console.log(err);
 					callback("-1");

@@ -38,9 +38,18 @@ app.post("/saveproduct", function(req, res){
 	res.end("1");
 });
 
-app.get("/product", function(req, res) {
+app.get("/products", function(req, res) {
+	console.log(">> in product");
+	appDB.getProduct(false, function(result) {
+		//console.log(result);
+		res.end(JSON.stringify(result));
+	});
 
-	appDB.getProducts(function(result) {
+});
+
+app.get("/products/:id", function(req, res) {
+	console.log(">> in product id");
+	appDB.getProduct(req.params.id, function(result) {
 		console.log(result);
 		res.end(JSON.stringify(result));
 	});

@@ -8,7 +8,7 @@ fullStackApp.controller("homeController", function($scope, sharedProperties, $st
 
 	$http({
 		method: "GET",
-		url: "/product"
+		url: "/products"
 	}).then(function success(res) {
 		$scope.productList = res.data;
 

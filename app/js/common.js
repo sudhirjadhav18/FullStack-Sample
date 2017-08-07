@@ -8,28 +8,28 @@ fullStackApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
     	name: 'login',
     	url: '/',
     	templateUrl: "templates/login.html",
-		controller: "loginController"
+		  controller: "loginController"
   	}
 
   	var homeState = {
     	name: 'home',
     	url: '/home',
     	templateUrl: "templates/home.html",
-		controller: "homeController"
+		  controller: "homeController"
   	}
 
   	var signUpState = {
     	name: 'signup',
     	url: '/signup',
     	templateUrl: "templates/signup.html",
-		controller: "signUpController"
+		  controller: "signUpController"
   	}
 
   	var productState = {
     	name: 'product',
-    	url: '/product',
+    	url: '/product/:id',
     	templateUrl: "templates/product.html",
-		controller: "productController"
+		  controller: "productController"
   	}
 
   	$urlMatcherFactoryProvider.caseInsensitive(true);

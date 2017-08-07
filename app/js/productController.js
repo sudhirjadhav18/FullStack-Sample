@@ -1,6 +1,19 @@
 
-fullStackApp.controller("productController", function($scope, $state, sharedProperties, $http) {
+fullStackApp.controller("productController", function($scope, $state, sharedProperties, $http, $stateParams) {
 	
+	if($stateParams.id) {
+		$http({
+			method: "GET",
+			url: "/products/" + $stateParams.id
+		}).then(function success(res) {
+			$scope.product = res.data;
+
+		}, function error(res) {
+			console.log("error while getting product");
+		});
+	}
+
+
 	$scope.saveClick = function () {
 		$scope.productClass = "";
 		$scope.brandClass = "";
