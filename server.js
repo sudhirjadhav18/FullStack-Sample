@@ -30,7 +30,21 @@ app.post("/signupuser", function(req, res){
 app.post("/saveproduct", function(req, res){
 	console.log(req.body);
 
+	appDB.saveProduct(req.body, function(result){
+		console.log("save product callback result: " + result);
+		res.end(result);
+	});
+
 	res.end("1");
+});
+
+app.get("/product", function(req, res) {
+
+	appDB.getProducts(function(result) {
+		console.log(result);
+		res.end(JSON.stringify(result));
+	});
+
 });
 
 app.get("/*", function(req, res) {

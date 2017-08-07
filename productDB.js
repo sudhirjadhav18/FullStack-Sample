@@ -1,6 +1,8 @@
 
 exports.checkLogin = checkLogin;
 exports.registerUser = registerUser;
+exports.saveProduct = saveProduct;
+exports.getProducts = getProducts;
 
 var COLLECTION_PRODUCT = "Product";
 var COLLECTION_USER = "User";
@@ -106,6 +108,49 @@ function registerUser(email, pass, callback) {
 			callback("-1"); // Error while connection
 	});
 
+}
+
+function saveProduct(productData, callback) {
+	connectDB(function(db){
+		if(db){
+			var oProduct = { name: productData.name, brand: productData.brand, price: productData.price };
+
+			console.log(">> Inserting product");
+			console.log(oProduct);
+
+			db.collection(COLLECTION_PRODUCT).insertOne(oProduct, function(err, res){
+				if(err){
+					console.log(err);
+					callback("-1");
+				}
+				else{
+					console.log(">> Product Registered");
+					db.close();
+					callback("1");
+				}
+			});
+		}
+		else
+			callback("-1");
+	});
+}
+
+function getProducts(callback) {
+	connectDB(function(db) {
+		if(db) {
+			db.collection(COLLECTION_PRODUCT).find({}).toArray(function(err, result) {
+				if(err) {
+					console.log(err);
+					callback("-1");
+				}
+				else
+					callback(result);
+			});
+		}
+		else {
+			callback("-1");
+		}
+	});
 }
 
 function connectDB(callback) {

@@ -5,3 +5,6 @@
 .login-view .login-box { margin: 30px 0 0; padding: 30px; }
 
 .signup-view .signup-box { margin: 30px 0 0; padding: 30px; }
+
+.home-view.table-container { margin: 10px 0 0; border-radius: 5px; padding: 0; }
+.home-view .product-table { margin: 0; border: 1px solid #ddd; border-radius: 5px; }

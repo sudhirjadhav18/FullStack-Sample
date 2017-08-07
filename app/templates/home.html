@@ -3,6 +3,33 @@
 	<a class="btn btn-default pull-right" ng-click="logoutClick()">Logout</a>
 </div>
 
-<div class="home-view row">
+<div class="home-view table-container row">
 	
+	<div ng-class="infoBoxClass" ng-show="showInfoBox">{{infoBoxInnerText}}</div>
+
+	<table class="table table-striped product-table table-hover" ng-hide="hideProductTable">
+		<tr>
+			<th>Product</th>
+			<th>Brand</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+		
+		<tr ng-repeat="product in productList">
+			<td>{{ product.name }}</td>
+			<td>{{ product.brand }}</td>
+			<td>{{ product.price | currency }}</td>
+			<td>
+				<div class="pull-right">
+					<a href="#">
+			          <span class="glyphicon glyphicon-pencil"></span>
+			        </a>
+					<a href="#">
+			          <span class="glyphicon glyphicon-trash text-danger"></span>
+			        </a>
+		        </div>
+			</td>
+		</tr>
+	</table>
+
 </div>
