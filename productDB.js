@@ -3,6 +3,7 @@ exports.checkLogin = checkLogin;
 exports.registerUser = registerUser;
 exports.saveProduct = saveProduct;
 exports.getProduct = getProduct;
+exports.deleteProduct = deleteProduct;
 
 var COLLECTION_PRODUCT = "Product";
 var COLLECTION_USER = "User";
@@ -117,20 +118,41 @@ function saveProduct(productData, callback) {
 		if(db){
 			var oProduct = { name: productData.name, brand: productData.brand, price: productData.price };
 
-			console.log(">> Inserting product");
-			console.log(oProduct);
+			if(!productData.id) {
+				console.log(">> Inserting product");
+				console.log(oProduct);
 
-			db.collection(COLLECTION_PRODUCT).insertOne(oProduct, function(err, res){
-				if(err){
-					console.log(err);
-					callback("-1");
-				}
-				else{
-					console.log(">> Product Registered");
-					db.close();
-					callback("1");
-				}
-			});
+				db.collection(COLLECTION_PRODUCT).insertOne(oProduct, function(err, res){
+					if(err){
+						console.log(err);
+						callback("-1");
+					}
+					else{
+						console.log(">> Product Registered");
+						db.close();
+						callback("1");
+					}
+				});
+			}
+			else {
+				console.log(">> Updating product");
+				console.log(oProduct);
+
+				var query = { _id: ObjectId(productData.id) };
+
+				db.collection(COLLECTION_PRODUCT).updateOne(query, oProduct, function(err, res) {
+					if(err){
+						console.log(err);
+						callback("-1");
+					}
+					else{
+						console.log(">> Product Updated");
+						db.close();
+						callback("1");
+					}
+				});
+			}
+			
 		}
 		else
 			callback("-1");
@@ -143,7 +165,7 @@ function getProduct(productId, callback) {
 
 			var query = {};
 			if(productId) {
-				query = { _id: ObjectId(productId) }
+				query = { _id: ObjectId(productId) };
 			}
 
 			db.collection(COLLECTION_PRODUCT).find(query).toArray(function(err, result) {
@@ -151,13 +173,37 @@ function getProduct(productId, callback) {
 					console.log(err);
 					callback("-1");
 				}
-				else
+				else {
+					db.close();
 					callback(result);
+				}
 			});
 		}
 		else {
 			callback("-1");
 		}
+	});
+}
+
+function deleteProduct(productId, callback) {
+	connectDB(function(db) {
+		if(db) {
+			var query = { _id: ObjectId(productId) };
+
+			db.collection(COLLECTION_PRODUCT).deleteOne(query, function(err, res) {
+				if(err) {
+					console.log(err);
+					callback("-1");
+				}
+				else {
+					db.close();
+					callback("1");
+				}
+
+			});
+		}
+		else 
+			callback("-1");
 	});
 }
 

@@ -5,7 +5,7 @@
 
 <div class="home-view table-container row">
 	
-	<div ng-class="infoBoxClass" ng-show="showInfoBox">{{infoBoxInnerText}}</div>
+	<div class="infoBox" ng-class="infoBoxClass" ng-show="showInfoBox">{{infoBoxInnerText}}</div>
 
 	<table class="table table-striped product-table table-hover" ng-hide="hideProductTable">
 		<tr>
@@ -24,10 +24,16 @@
 					<a ui-sref="product({ id: product._id })">
 			          <span class="glyphicon glyphicon-pencil"></span>
 			        </a>
-					<a href="#">
+					<a href="javascript:void(0)" ng-click="deleteClick(product._id)">
 			          <span class="glyphicon glyphicon-trash text-danger"></span>
 			        </a>
 		        </div>
+			</td>
+		</tr>
+
+		<tr ng-show="showNoProductsInfo">
+			<td colspan="4">
+				No Products Available
 			</td>
 		</tr>
 	</table>

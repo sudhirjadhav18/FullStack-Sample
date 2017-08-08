@@ -29,7 +29,7 @@ fullStackApp.controller("loginController", function($scope, $state, sharedProper
 
 			$http({
 				method: "POST",
-				url: "/loginuser",
+				url: "/api/loginuser",
 				headers: { 'Content-Type': 'application/json; charset=utf-8' },
 				data: loginJSON				
 			}).then(function success(res) {

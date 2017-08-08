@@ -44,7 +44,7 @@ fullStackApp.controller("signUpController", function($scope, $state, $http) {
 
 			$http({
 				method: "POST",
-				url: "/signupuser",
+				url: "/api/signupuser",
 				headers: { 'Content-Type': 'application/json; charset=utf-8' },
 				data: signUpJSON				
 			}).then(function success(res) {

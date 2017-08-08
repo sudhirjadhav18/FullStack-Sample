@@ -7,7 +7,7 @@ var appDB = require('./productDB');
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
-app.post("/loginuser", function(req, res) {
+app.post("/api/loginuser", function(req, res) {
 	console.log(req.body);
 
 	appDB.checkLogin(req.body.email, req.body.pass, function(result) {
@@ -17,7 +17,7 @@ app.post("/loginuser", function(req, res) {
 	});
 });
 
-app.post("/signupuser", function(req, res){
+app.post("/api/signupuser", function(req, res){
 	console.log(req.body);
 
 	appDB.registerUser(req.body.email, req.body.pass, function(result){
@@ -27,7 +27,7 @@ app.post("/signupuser", function(req, res){
 	
 });
 
-app.post("/saveproduct", function(req, res){
+app.post("/api/saveproduct", function(req, res){
 	console.log(req.body);
 
 	appDB.saveProduct(req.body, function(result){
@@ -38,8 +38,7 @@ app.post("/saveproduct", function(req, res){
 	res.end("1");
 });
 
-app.get("/products", function(req, res) {
-	console.log(">> in product");
+app.get("/api/product", function(req, res) {
 	appDB.getProduct(false, function(result) {
 		//console.log(result);
 		res.end(JSON.stringify(result));
@@ -47,11 +46,18 @@ app.get("/products", function(req, res) {
 
 });
 
-app.get("/products/:id", function(req, res) {
-	console.log(">> in product id");
+app.get("/api/product/:id", function(req, res) {
 	appDB.getProduct(req.params.id, function(result) {
 		console.log(result);
 		res.end(JSON.stringify(result));
+	});
+
+});
+
+app.delete("/api/product/:id", function(req, res) {
+	appDB.deleteProduct(req.params.id, function(result) {
+		console.log(result);
+		res.end(result);
 	});
 
 });

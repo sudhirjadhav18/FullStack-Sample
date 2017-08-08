@@ -4,9 +4,13 @@ fullStackApp.controller("productController", function($scope, $state, sharedProp
 	if($stateParams.id) {
 		$http({
 			method: "GET",
-			url: "/products/" + $stateParams.id
+			url: "/api/product/" + $stateParams.id
 		}).then(function success(res) {
-			$scope.product = res.data;
+			if(res.data && res.data[0]) {
+				$scope.txtProduct = res.data[0].name;
+				$scope.txtBrand = res.data[0].brand;
+				$scope.txtPrice = res.data[0].price;
+			}
 
 		}, function error(res) {
 			console.log("error while getting product");
@@ -49,9 +53,12 @@ fullStackApp.controller("productController", function($scope, $state, sharedProp
 				"price": $scope.txtPrice
 			};
 
+			if($stateParams.id)
+				productJSON.id = $stateParams.id;
+
 			$http({
 				method: "POST",
-				url: "/saveproduct",
+				url: "/api/saveproduct",
 				headers: { 'Content-Type': 'application/json; charset=utf-8' },
 				data: productJSON				
 			}).then(function success(res) {
