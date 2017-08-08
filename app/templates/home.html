@@ -9,16 +9,16 @@
 
 	<table class="table table-striped product-table table-hover" ng-hide="hideProductTable">
 		<tr>
-			<th>Product</th>
-			<th>Brand</th>
-			<th>Price</th>
+			<th ng-click="sortProduct('name')">Product <div ng-class="getSortClass('name')"></div></th>
+			<th ng-click="sortProduct('brand')">Brand <div ng-class="getSortClass('brand')"></div></th>
+			<th ng-click="sortProduct('price')" class="text-right">Price <div ng-class="getSortClass('price')"></div></th>
 			<th></th>
 		</tr>
 		
-		<tr ng-repeat="product in productList">
+		<tr ng-repeat="product in productList | orderBy: productOrderBy : productOrderReverse">
 			<td>{{ product.name }}</td>
 			<td>{{ product.brand }}</td>
-			<td>{{ product.price | currency }}</td>
+			<td class="text-right">{{ product.price | currency }}</td>
 			<td>
 				<div class="pull-right">
 					<a ui-sref="product({ id: product._id })">

@@ -6,6 +6,13 @@ fullStackApp.controller("homeController", function($scope, sharedProperties, $st
 	$scope.infoBoxInnerText = "";
 	$scope.hideProductTable = false;
 	$scope.showNoProductsInfo = false;
+	$scope.productOrderBy = "name";
+	$scope.productOrderReverse = false;
+
+	var infoBoxMessage = sharedProperties.getInfoBox();
+	if(infoBoxMessage) {
+		showInfoBox("bg-success", infoBoxMessage, false);
+	}
 
 	$http({
 		method: "GET",
@@ -53,6 +60,28 @@ fullStackApp.controller("homeController", function($scope, sharedProperties, $st
 		}, function error(res) {
 			showInfoBox("bg-danger", "error while deleting product", false);
 		});
+	}
+
+	$scope.sortProduct = function (sortBy) {
+		if($scope.productOrderBy == sortBy)
+			$scope.productOrderReverse = !$scope.productOrderReverse;
+		else {
+			$scope.productOrderBy = sortBy;
+			$scope.productOrderReverse = false;
+		}
+		
+	}
+
+	$scope.getSortClass = function (sortBy) {
+		if($scope.productOrderBy == sortBy) {
+			if($scope.productOrderReverse)
+				return "down-arrow";
+			else
+				return "up-arrow";
+		}
+		else {
+			return "";
+		}
 	}
 
 	function showInfoBox(boxClass, boxText, hideTable) {

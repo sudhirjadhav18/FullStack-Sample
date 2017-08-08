@@ -65,6 +65,11 @@ fullStackApp.controller("productController", function($scope, $state, sharedProp
 
 				if(res.data >= 1)
 				{
+					if($stateParams.id)
+						sharedProperties.setInfoBox("Product updated");
+					else
+						sharedProperties.setInfoBox("Product added");
+
 					$state.go('home');
 				}
 				else

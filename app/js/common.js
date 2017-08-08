@@ -65,6 +65,7 @@ fullStackApp.run(['$rootScope', 'sharedProperties', '$state', function ($rootSco
 
 fullStackApp.service("sharedProperties", function() {
 	var STORAGE_LOGIN_ID = "APP_LoggedInUserID";
+  var infoBoxMessage = "";
 
 	return {
 		getLoggedInUser: function() {
@@ -78,7 +79,15 @@ fullStackApp.service("sharedProperties", function() {
 		},
 		logoutUser: function() {
 			sessionStorage.setItem(STORAGE_LOGIN_ID, 0);
-		}
+		},
+    setInfoBox: function(message) {
+      infoBoxMessage = message;
+    },
+    getInfoBox: function() {
+      var _return = infoBoxMessage;
+      infoBoxMessage = ""; // clean an return
+      return _return;
+    }
 	};
 });
 
