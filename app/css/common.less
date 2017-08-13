@@ -1,0 +1,27 @@
+
+@boxBackground: #eee;
+
+.custom-box { border: 1px solid #aaa; border-radius: 5px; margin: 10px 0 0; padding: 10px; background-color: @boxBackground; }
+.bg-danger,
+.bg-success { padding: 15px; }
+
+.arrow { height:0; width:0; border-left:5px solid transparent; border-right:5px solid transparent; display:inline-block; }
+.up-arrow { .arrow; border-bottom:7px solid black; }
+.down-arrow { .arrow; border-top:7px solid black; }
+
+.login-view {
+		.login-box { margin: 30px 0 0; padding: 30px; }
+	} 
+
+.signup-view {
+		.signup-box { margin: 30px 0 0; padding: 30px; }
+	}
+
+.home-view {
+		&.table-container { margin: 10px 0 0; border-radius: 5px; padding: 0; }
+		.product-table { 
+			margin: 0; border: 1px solid #ddd; border-radius: 5px; 
+			th { cursor: pointer; }
+		}
+		.infoBox {  border-radius: 5px; margin: 0 0 10px; }
+	} 

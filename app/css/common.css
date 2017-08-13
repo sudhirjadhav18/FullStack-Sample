@@ -1,19 +1,59 @@
-
-.custom-box { border: 1px solid #aaa; border-radius: 5px; margin: 10px 0 0; padding: 10px; background-color: #eee; }
+.custom-box {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin: 10px 0 0;
+  padding: 10px;
+  background-color: #eee;
+}
 .bg-danger,
-.bg-success { padding: 15px; }
-
-.down-arrow,
-.up-arrow { height:0;width:0;border-left:5px solid transparent;border-right:5px solid transparent;display:inline-block; }
-.up-arrow { border-bottom:7px solid black; }
-.down-arrow { border-top:7px solid black; }
-
-.login-view .login-box { margin: 30px 0 0; padding: 30px; }
-
-.signup-view .signup-box { margin: 30px 0 0; padding: 30px; }
-
-.home-view.table-container { margin: 10px 0 0; border-radius: 5px; padding: 0; }
-.home-view .product-table { margin: 0; border: 1px solid #ddd; border-radius: 5px; }
-.home-view .product-table th { cursor: pointer; }
-
-.home-view .infoBox {  border-radius: 5px; margin: 0 0 10px; }
+.bg-success {
+  padding: 15px;
+}
+.arrow {
+  height: 0;
+  width: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+}
+.up-arrow {
+  height: 0;
+  width: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+  border-bottom: 7px solid black;
+}
+.down-arrow {
+  height: 0;
+  width: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+  border-top: 7px solid black;
+}
+.login-view .login-box {
+  margin: 30px 0 0;
+  padding: 30px;
+}
+.signup-view .signup-box {
+  margin: 30px 0 0;
+  padding: 30px;
+}
+.home-view.table-container {
+  margin: 10px 0 0;
+  border-radius: 5px;
+  padding: 0;
+}
+.home-view .product-table {
+  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.home-view .product-table th {
+  cursor: pointer;
+}
+.home-view .infoBox {
+  border-radius: 5px;
+  margin: 0 0 10px;
+}
